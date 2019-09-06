@@ -3,9 +3,10 @@ const actionDb = require("../data/helpers/actionModel.js")
 const projectDb = require("../data/helpers/projectModel.js")
 
 // get all actions for the project 
-router.get("/",(req,res) => {
-    actionDb
-    .get()
+router.get("/projects/:id",validateProjectId,(req,res) => {
+    const {id} = req.params;
+    projectDb
+    .getProjectActions(id)
     .then(response => {
         res.status(200).json(response)
     })
